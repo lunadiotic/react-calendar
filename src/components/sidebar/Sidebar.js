@@ -1,10 +1,14 @@
 import React from 'react';
+import AddEvent from '../modal/AddEvent';
 
 const Sidebar = (props) => {
     return (
         <div className='col-3'>
             <div className="d-grid gap-2">
-                <button className="btn btn-primary" type="button">
+                <button 
+                    data-bs-toggle="modal"
+                    data-bs-target="#add-event"
+                    className="btn btn-primary">
                     Create New Event
                 </button>
             </div>
@@ -20,6 +24,8 @@ const Sidebar = (props) => {
                     Hangout
                 </div>
             </div>
+
+            <AddEvent/>
         </div>
     );
 };
