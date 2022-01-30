@@ -1,3 +1,7 @@
+import DatePicker from 'react-datepicker'
+
+import "react-datepicker/dist/react-datepicker.css"
+
 const EventForm = () => {
     return (
         <div className="modal" tabindex="-1" id="add-event">
@@ -26,18 +30,28 @@ const EventForm = () => {
                             <label htmlFor="" className="form-label">All-day event? (Optional)</label>
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="" className="form-label">Start</label>
-                            <input 
-                                type="date"
-                                name="date-start"
-                                className="form-control" />
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="" className="form-label">End</label>
-                            <input 
-                                type="date"
-                                name="date-end"
-                                className="form-control" />
+                            <div className="row">
+                                <div className="col">
+                                    <label htmlFor="" className="form-label">Start</label>
+                                    <DatePicker 
+                                        showTimeSelect
+                                        timeFormat={'p'}
+                                        timeIntervals={1}
+                                        dateFormat="Pp"
+                                        className='form-control'
+                                        />
+                                </div>
+                                <div className="col">
+                                    <label htmlFor="" className="form-label">End</label>
+                                    <DatePicker 
+                                        showTimeSelect
+                                        timeFormat={'p'}
+                                        timeIntervals={1}
+                                        dateFormat="Pp"
+                                        className='form-control'
+                                        />
+                                </div>
+                            </div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="" className="form-label">Choose Event Color</label>
