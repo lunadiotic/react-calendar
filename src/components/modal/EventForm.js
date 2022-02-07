@@ -8,7 +8,7 @@ const EventForm = (props) => {
         dateStart,
         dateEnd,
         checkbox,
-        color,
+        colorSelected,
         colorsOption,
         eventTitleChange,
         checkboxChange,
@@ -20,7 +20,7 @@ const EventForm = (props) => {
     } = props
 
     return (
-        <div className="modal" tabindex="-1" id="add-event">
+        <div className="modal" tabIndex="-1" id="add-event">
             <div className="modal-dialog">
                 <div className="modal-content">
                 <div className="modal-header">
@@ -106,8 +106,10 @@ const EventForm = (props) => {
                                     colorsOption.map(color =>
                                         <option 
                                             value={color.toLowerCase()}
-                                            key={color}>
-                                            {color}
+                                            key={color}
+                                            selected={colorSelected === color ? 'selected' : ''}
+                                        >
+                                            {color.charAt(0).toUpperCase() + color.slice(1)}
                                         </option> 
                                     )
                                 }
