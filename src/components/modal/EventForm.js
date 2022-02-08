@@ -120,11 +120,11 @@ const EventForm = (props) => {
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button
+                        type="button"
                         onClick={eventSubmit}
                         disabled={
                             !eventTitle || !dateStart || !dateEnd
                         } 
-                        type="button"
                         data-bs-dismiss="modal" 
                         className="btn btn-primary">Save changes</button>
                 </div>
