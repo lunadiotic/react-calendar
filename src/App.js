@@ -1,10 +1,14 @@
 import './App.css';
 import Main from './components/Main';
 
+import AppState from './context/App/State'
+
 const App = () => {
   return (
       <>
-        <Main/>
+        <AppState>
+            <Main/>
+        </AppState>
       </>
   );
 }
