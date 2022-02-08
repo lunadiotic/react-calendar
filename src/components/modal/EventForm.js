@@ -14,7 +14,6 @@ const EventForm = (props) => {
         checkboxChange,
         colorChange,
         dateChange,
-        colorObj,
         eventSubmit,
         isShowTime
     } = props
@@ -102,6 +101,7 @@ const EventForm = (props) => {
                                 name="event_color" 
                                 id="" 
                                 className="form-control">
+                                    <option value='-'> - </option> 
                                 {
                                     colorsOption.map(color =>
                                         <option 

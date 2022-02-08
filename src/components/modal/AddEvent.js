@@ -10,6 +10,8 @@ const AddEvent = () => {
   const [dateEnd, setDateEnd] = useState(new Date());
   const [colorSelected, setColorSelected] = useState('');
 
+  const colors = ["primary", "warning", "danger"];
+
   const onEventTitleChange = (event) => {
     setEventTitle(event.target.value)
   }
@@ -22,8 +24,21 @@ const AddEvent = () => {
       setCheckbox(false)
     }
   }
-  const onColorChange = () => {}
-  const onDateChange = () => {}
+  const onDateChange = (propertyName) => event => {
+    if (propertyName === 'start') {
+      setDateStart(event)
+    }
+    if (propertyName === 'end') {
+      setDateEnd(event)
+    }
+  }
+  const onColorChange = (event) => {
+    if (event.target.value !== '-') {
+      setColorSelected(event.target.value)
+    } else {
+      setColorSelected('-')
+    }
+  }
 
   return (
     <div id="">
