@@ -13,8 +13,15 @@ const AppState = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
 
     return (
-        <>
-        </>
+        <AppContext.Provider
+            value={{
+                events: state.events,
+                colors: state.colors,
+                selectedEvent: state.selectedEvent
+            }}
+        >
+            {props.children}
+        </AppContext.Provider>
     );
 };
 
