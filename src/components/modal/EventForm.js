@@ -103,13 +103,13 @@ const EventForm = (props) => {
                                 className="form-control">
                                     <option value='-'> - </option> 
                                 {
-                                    colorsOption.map(color =>
+                                    colorsOption.map((color, index) =>
                                         <option 
-                                            value={color.toLowerCase()}
-                                            key={color}
+                                            value={color.hex}
+                                            key={index}
                                             defaultValue={colorSelected === color ? 'selected' : ''}
                                         >
-                                            {color.charAt(0).toUpperCase() + color.slice(1)}
+                                            {color.color}
                                         </option> 
                                     )
                                 }

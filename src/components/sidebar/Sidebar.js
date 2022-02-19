@@ -20,7 +20,7 @@ const Sidebar = (props) => {
                 {
                     events.length > 0 ?
                     events.map((event, index) => (
-                        <div className={`my-1 p-2 bg-${event.color}`} key={index}>
+                        <div className='my-1 p-2' style={{backgroundColor: event.color }} key={index}>
                             {event.title}
                         </div>
                     ))

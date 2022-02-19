@@ -12,7 +12,20 @@ const AddEvent = () => {
   const [dateEnd, setDateEnd] = useState(new Date());
   const [colorSelected, setColorSelected] = useState('');
 
-  // const colors = ["primary", "warning", "danger"];
+  const colorsOption = [
+    {
+      color: 'Blue',
+      hex: '#0d6efd'
+    },
+    {
+      color: 'Green',
+      hex: '#198754'
+    },
+    {
+      color: 'Red',
+      hex: '#dc3545'
+    },
+  ];
 
   const appContext = useContext(AppContext);
   const { addEvent, events, colors, selectedEvent} = appContext;
@@ -92,7 +105,7 @@ const AddEvent = () => {
           dateEnd={dateEnd}
           checkbox={checkbox}
           colorSelected={colorSelected}
-          colorsOption={['primary', 'success', 'danger']}
+          colorsOption={colorsOption}
           eventTitleChange={onEventTitleChange}
           checkboxChange={onCheckboxChange}
           colorChange={onColorChange}
