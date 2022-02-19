@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import AppContext from '../../context/App/Context'
 import AddEvent from '../modal/AddEvent';
 
 const Sidebar = (props) => {
+    const appContext = useContext(AppContext)
+    const { events } = appContext
     return (
         <div className='col-3'>
             <div className="d-grid gap-2">
@@ -14,15 +17,16 @@ const Sidebar = (props) => {
             </div>
             <div className="m-t-20 text-white">
                 <br />
-                <div className="my-1 p-2 bg-primary">
-                    Watch Movies
-                </div>
-                <div className="my-1 p-2 bg-success">
-                    Learn
-                </div>
-                <div className="my-1 p-2 bg-danger">
-                    Hangout
-                </div>
+                {
+                    events.length > 0 ?
+                    events.map((event, index) => (
+                        <div className={`my-1 p-2 bg-${event.color}`} key={index}>
+                            {event.title}
+                        </div>
+                    ))
+                    :
+                    'Empty events'
+                }
             </div>
 
             <AddEvent/>

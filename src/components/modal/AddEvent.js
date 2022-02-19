@@ -92,7 +92,7 @@ const AddEvent = () => {
           dateEnd={dateEnd}
           checkbox={checkbox}
           colorSelected={colorSelected}
-          colorsOption={['primary', 'warning', 'danger']}
+          colorsOption={['primary', 'success', 'danger']}
           eventTitleChange={onEventTitleChange}
           checkboxChange={onCheckboxChange}
           colorChange={onColorChange}
