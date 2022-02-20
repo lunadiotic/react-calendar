@@ -3,7 +3,7 @@ import AppReducer from './Reducer';
 import AppContext from './Context';
 import { useLocalStorage } from '../../hooks/storage';
 
-import { ADD_EVENT } from '../types';
+import { ADD_EVENT, GET_EVENTS } from '../types';
 
 
 const AppState = (props) => {
@@ -26,13 +26,23 @@ const AppState = (props) => {
         })
     }
 
+    const getEvents = () => {
+        if(item) { //check item in useLocalStorage
+            dispatch({ 
+                type: GET_EVENTS,
+                payload: item
+            })
+        }
+    }
+
     return (
         <AppContext.Provider
             value={{
                 events: state.events,
                 colors: state.colors,
                 selectedEvent: state.selectedEvent,
-                addEvent
+                addEvent,
+                getEvents
             }}
         >
             {props.children}
