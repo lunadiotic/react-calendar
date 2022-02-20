@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/App/Context'
 import AddEvent from '../modal/AddEvent';
+import SelectedModal from '../modal/SelectedModal';
 
 const Sidebar = (props) => {
     const appContext = useContext(AppContext)
@@ -22,9 +23,11 @@ const Sidebar = (props) => {
                     events.map((event, index) => (
                         <div 
                             className='my-1 p-2' 
-                            style={{backgroundColor: event.color }} 
+                            style={{backgroundColor: event.color}} 
                             key={index}
                             onClick={() => selected(event)}
+                            data-bs-toggle="modal"
+                            data-bs-target="#select-event"
                         >
                             {event.title}
                         </div>
@@ -35,6 +38,7 @@ const Sidebar = (props) => {
             </div>
 
             <AddEvent/>
+            <SelectedModal/>
         </div>
     );
 };
