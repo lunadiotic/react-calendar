@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react';
 import AppReducer from './Reducer';
 import AppContext from './Context';
+import { useLocalStorage } from '../../hooks/storage';
 
 import { ADD_EVENT } from '../types';
 
@@ -13,10 +14,12 @@ const AppState = (props) => {
     };
 
     const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [item, setValue] = useLocalStorage('events');
 
     const addEvent = event => {
         let userEvent = [...state.events]
         userEvent.push(event)
+        setValue(userEvent)
         dispatch({
             type: ADD_EVENT,
             payload: userEvent
