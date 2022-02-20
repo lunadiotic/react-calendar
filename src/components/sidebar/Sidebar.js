@@ -4,7 +4,7 @@ import AddEvent from '../modal/AddEvent';
 
 const Sidebar = (props) => {
     const appContext = useContext(AppContext)
-    const { events } = appContext
+    const { events, selected } = appContext
     return (
         <div className='col-3'>
             <div className="d-grid gap-2">
@@ -20,7 +20,12 @@ const Sidebar = (props) => {
                 {
                     events.length > 0 ?
                     events.map((event, index) => (
-                        <div className='my-1 p-2' style={{backgroundColor: event.color }} key={index}>
+                        <div 
+                            className='my-1 p-2' 
+                            style={{backgroundColor: event.color }} 
+                            key={index}
+                            onClick={() => selected(event)}
+                        >
                             {event.title}
                         </div>
                     ))
