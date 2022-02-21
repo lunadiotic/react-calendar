@@ -102,6 +102,7 @@ const EventForm = (props) => {
                                     onChange={colorChange}
                                     name="event_color" 
                                     id="" 
+                                    value={colorSelected}
                                     className="form-control">
                                         <option value='-'> - </option> 
                                     {
