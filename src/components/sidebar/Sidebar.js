@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import AppContext from '../../context/App/Context'
 import AddEvent from '../modal/AddEvent';
+import EditEvent from '../modal/EditEvent';
 import SelectedModal from '../modal/SelectedModal';
 
 const Sidebar = (props) => {
@@ -38,6 +39,7 @@ const Sidebar = (props) => {
             </div>
 
             <AddEvent/>
+            <EditEvent/>
             <SelectedModal/>
         </div>
     );

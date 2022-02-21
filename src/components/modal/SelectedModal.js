@@ -13,7 +13,11 @@ const SelectedModal = () => {
             
           </div>
           <div className="modal-footer d-flex justify-content-evenly">
-            <button className="btn btn-primary" data-bs-dismiss="modal">Edit Event</button>
+            <button 
+              className="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#edit-event"
+              >Edit Event</button>
             <span className='text-white'>Or</span>
             <button className="btn btn-danger" data-bs-dismiss="modal">Delete Event</button>
           </div>

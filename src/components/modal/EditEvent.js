@@ -1,9 +1,9 @@
 import moment from "moment";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import EventForm from "./EventForm";
 import AppContext from '../../context/App/Context'
 
-const AddEvent = () => {
+const EditEvent = () => {
 
   const [eventTitle, setEventTitle] = useState('');
   const [checkbox, setCheckbox] = useState(false);
@@ -28,13 +28,35 @@ const AddEvent = () => {
   ];
 
   const appContext = useContext(AppContext);
-  const { addEvent, events, colors, selectedEvent} = appContext;
+  const { events, colors, selectedEvent } = appContext;
+
+  useEffect(() => {
+    if (Object.keys(selectedEvent).length > 0) {
+      setColorSelected(selectedEvent.color)
+      setEventTitle(selectedEvent.title)
+      setCheckbox(selectedEvent.allDay)
+      let start = ''
+      let end = ''
+      if (!selectedEvent.allDay) {
+        setIsShowTime(false)
+        start = `${moment(new Date(selectedEvent.start)).format()}`
+        end = `${moment(new Date(selectedEvent.end)).format()}`
+      } else {
+        start = `${moment(new Date(selectedEvent.start)).format('YYYY-MM-DD')}`
+        end = `${moment(new Date(selectedEvent.end)).format('YYYY-MM-DD')}`
+      }
+      setDateStart(new Date(start));
+      setDateEnd(new Date(end));
+    }
+  }, [selectedEvent, events])
+
 
   const onEventTitleChange = (event) => {
     setEventTitle(event.target.value)
   }
+
   const onCheckboxChange = (event) => {
-    if(event.target.checked === true) {
+    if (event.target.checked === true) {
       setIsShowTime(true)
       setCheckbox(true)
     } else {
@@ -42,6 +64,7 @@ const AddEvent = () => {
       setCheckbox(false)
     }
   }
+
   const onDateChange = (propertyName) => event => {
     if (propertyName === 'start') {
       setDateStart(event)
@@ -50,6 +73,7 @@ const AddEvent = () => {
       setDateEnd(event)
     }
   }
+
   const onColorChange = (event) => {
     if (event.target.value !== '-') {
       setColorSelected(event.target.value)
@@ -64,7 +88,7 @@ const AddEvent = () => {
     if (!checkbox) {
       start = `${moment(dateStart).format()}`
       end = `${moment(dateEnd).format()}`
-    } else{
+    } else {
       start = `${moment(dateStart).format('YYYY-MM-DD')}`
       end = `${moment(dateEnd).format('YYYY-MM-DD')}`
     }
@@ -74,7 +98,6 @@ const AddEvent = () => {
       title: eventTitle,
       start,
       end,
-      allDay: checkbox,
       color: colorSelected
     }
 
@@ -94,29 +117,28 @@ const AddEvent = () => {
     const event = setEvent(events.length + 1);
     // add event to events array using context
     console.log(event);
-    addEvent(event);
     reset();
   }
 
   return (
     <div id="">
-        <EventForm 
-          modalId='add-event'
-          eventTitle={eventTitle}
-          dateStart={dateStart}
-          dateEnd={dateEnd}
-          checkbox={checkbox}
-          colorSelected={colorSelected}
-          colorsOption={colorsOption}
-          eventTitleChange={onEventTitleChange}
-          checkboxChange={onCheckboxChange}
-          colorChange={onColorChange}
-          dateChange={onDateChange}
-          isShowTime={isShowTime}
-          eventSubmit={eventSubmit}
-        />
+      <EventForm
+        modalId='edit-event'
+        eventTitle={eventTitle}
+        dateStart={dateStart}
+        dateEnd={dateEnd}
+        checkbox={checkbox}
+        colorSelected={colorSelected}
+        colorsOption={colorsOption}
+        eventTitleChange={onEventTitleChange}
+        checkboxChange={onCheckboxChange}
+        colorChange={onColorChange}
+        dateChange={onDateChange}
+        isShowTime={isShowTime}
+        eventSubmit={eventSubmit}
+      />
     </div>
   );
 };
 
-export default AddEvent;
+export default EditEvent;
