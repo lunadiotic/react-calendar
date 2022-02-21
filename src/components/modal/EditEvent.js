@@ -28,7 +28,7 @@ const EditEvent = () => {
   ];
 
   const appContext = useContext(AppContext);
-  const { events, colors, selectedEvent } = appContext;
+  const { events, colors, selectedEvent, editEvent } = appContext;
 
   useEffect(() => {
     if (Object.keys(selectedEvent).length > 0) {
@@ -37,8 +37,8 @@ const EditEvent = () => {
       setCheckbox(selectedEvent.allDay)
       let start = ''
       let end = ''
-      if (!selectedEvent.allDay) {
-        setIsShowTime(false)
+      if (selectedEvent.allDay) {
+        setIsShowTime(true)
         start = `${moment(new Date(selectedEvent.start)).format()}`
         end = `${moment(new Date(selectedEvent.end)).format()}`
       } else {
@@ -98,6 +98,7 @@ const EditEvent = () => {
       title: eventTitle,
       start,
       end,
+      allDay: checkbox,
       color: colorSelected
     }
 
@@ -114,9 +115,8 @@ const EditEvent = () => {
   }
 
   const eventSubmit = () => {
-    const event = setEvent(events.length + 1);
-    // add event to events array using context
-    console.log(event);
+    const event = setEvent(selectedEvent.id)
+    editEvent(event)
     reset();
   }
 

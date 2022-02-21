@@ -3,7 +3,7 @@ import AppReducer from './Reducer';
 import AppContext from './Context';
 import { useLocalStorage } from '../../hooks/storage';
 
-import { ADD_EVENT, GET_EVENTS, SELECT_EVENT } from '../types';
+import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, SELECT_EVENT } from '../types';
 
 
 const AppState = (props) => {
@@ -35,7 +35,18 @@ const AppState = (props) => {
             })
         }
     }
-
+    
+    const editEvent = event => {
+        const newEvents = item.map(item => {
+            return item.id === event.id ? event : item
+        })
+        setValue(newEvents)
+        dispatch({
+            type: EDIT_EVENT,
+            payload: newEvents
+        })
+    }
+    
     const selected = event => {
         setSelectedItem(event);
         dispatch({
@@ -43,6 +54,7 @@ const AppState = (props) => {
             payload: event
         });
     }
+
 
     return (
         <AppContext.Provider
@@ -52,6 +64,7 @@ const AppState = (props) => {
                 selectedEvent: state.selectedEvent,
                 addEvent,
                 getEvents,
+                editEvent,
                 selected
             }}
         >

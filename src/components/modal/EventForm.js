@@ -66,6 +66,7 @@ const EventForm = (props) => {
                                                 className='form-control'
                                                 /> :
                                             <DatePicker 
+                                                showTimeSelect={false}
                                                 selected={dateStart}
                                                 onChange={dateChange('start')}
                                                 dateFormat="Pp"
