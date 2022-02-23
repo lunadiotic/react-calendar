@@ -1,4 +1,4 @@
-import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, SELECT_EVENT } from '../types'
+import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, DELETE_EVENT, SELECT_EVENT } from '../types'
 
 const AppReducer = (state, action) => {
     switch(action.type) {
@@ -13,6 +13,11 @@ const AppReducer = (state, action) => {
                 events: action.payload
             }
         case EDIT_EVENT:
+            return {
+                ...state,
+                events: action.payload
+            }
+        case DELETE_EVENT:
             return {
                 ...state,
                 events: action.payload

@@ -28,7 +28,7 @@ const AddEvent = () => {
   ];
 
   const appContext = useContext(AppContext);
-  const { addEvent, events, colors, selectedEvent} = appContext;
+  const { addEvent, events } = appContext;
 
   const onEventTitleChange = (event) => {
     setEventTitle(event.target.value)

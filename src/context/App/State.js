@@ -3,7 +3,7 @@ import AppReducer from './Reducer';
 import AppContext from './Context';
 import { useLocalStorage } from '../../hooks/storage';
 
-import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, SELECT_EVENT } from '../types';
+import { ADD_EVENT, GET_EVENTS, EDIT_EVENT, DELETE_EVENT, SELECT_EVENT } from '../types';
 
 
 const AppState = (props) => {
@@ -46,8 +46,22 @@ const AppState = (props) => {
             payload: newEvents
         })
     }
+
+    const deleteEvent = event => {
+        const newEvents = item.filter(item => item.id !== event.id)
+        console.log(newEvents)
+        setValue(newEvents)
+        dispatch({
+            type: DELETE_EVENT,
+            payload: newEvents
+        })
+        dispatch({
+            type: SELECT_EVENT,
+            payload: {}
+        })
+    }
     
-    const selected = event => {
+    const selectEvent = event => {
         setSelectedItem(event);
         dispatch({
             type: SELECT_EVENT,
@@ -65,7 +79,8 @@ const AppState = (props) => {
                 addEvent,
                 getEvents,
                 editEvent,
-                selected
+                deleteEvent,
+                selectEvent
             }}
         >
             {props.children}

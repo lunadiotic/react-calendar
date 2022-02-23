@@ -4,9 +4,9 @@ import AddEvent from '../modal/AddEvent';
 import EditEvent from '../modal/EditEvent';
 import SelectedModal from '../modal/SelectedModal';
 
-const Sidebar = (props) => {
+const Sidebar = () => {
     const appContext = useContext(AppContext)
-    const { events, selected } = appContext
+    const { events, selectEvent } = appContext
     return (
         <div className='col-3'>
             <div className="d-grid gap-2">
@@ -26,7 +26,7 @@ const Sidebar = (props) => {
                             className='my-1 p-2' 
                             style={{backgroundColor: event.color}} 
                             key={index}
-                            onClick={() => selected(event)}
+                            onClick={() => selectEvent(event)}
                             data-bs-toggle="modal"
                             data-bs-target="#select-event"
                         >
